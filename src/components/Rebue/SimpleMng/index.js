@@ -17,7 +17,7 @@ export default class SimpleMng extends PureComponent {
   // 刷新
   handleReload(params) {
     if (params) {
-      this.state.options = params;
+      Object.assign(this.state.options, params);
     }
     const payload = this.state.options;
 
@@ -27,6 +27,17 @@ export default class SimpleMng extends PureComponent {
       payload,
     });
   }
+
+  // 查询
+  handleSearch = e => {
+    e.preventDefault();
+    const { form } = this.props;
+
+    form.validateFields((err, fieldsValue) => {
+      if (err) return;
+      this.handleReload({ ...fieldsValue });
+    });
+  };
 
   // 显示新建表单
   showAddForm(params) {
@@ -49,7 +60,6 @@ export default class SimpleMng extends PureComponent {
       editFormTitle: undefined,
     };
     const { id, moduleCode, ...state } = Object.assign(defaultParams, params);
-
     this.props.dispatch({
       type: `${moduleCode}/getById`,
       payload: { id },

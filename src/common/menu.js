@@ -30,7 +30,22 @@ const menuData = [
             name: '快递公司配置',
             path: 'kdi-company-cfg',
           },
+          {
+            name: '发件人配置',
+            path: 'kdi-sender-cfg',
+          },
         ],
+      },
+    ],
+  },
+  {
+    name: '实名认证',
+    icon: 'hdd',
+    path: 'rna',
+    children: [
+      {
+        name: '认证用户信息',
+        path: 'rna-realname',
       },
     ],
   },
@@ -54,6 +69,32 @@ const menuData = [
       {
         name: '角色',
         path: 'role-mng',
+      },
+    ],
+  },
+  {
+    name: '商品管理',
+    icon: 'user',
+    path: 'onl',
+    children: [
+      {
+        name: '商品上线',
+        path: 'onl-mng',
+      },
+    ],
+  },
+  {
+    name: '用户管理',
+    icon: 'user',
+    path: 'suc',
+    children: [
+      {
+        name: '用户信息',
+        path: 'user-mng',
+      },
+      {
+        name: '组织信息',
+        path: 'org-mng',
       },
     ],
   },

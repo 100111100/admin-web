@@ -1,4 +1,5 @@
-import { query as queryUsers, queryCurrent } from '../services/user';
+import { query as queryUsers } from '../services/user';
+import { queryCurrent } from '../services/pfmlogin';
 
 export default {
   namespace: 'user',

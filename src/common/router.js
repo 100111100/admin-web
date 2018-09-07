@@ -68,8 +68,25 @@ function getFlatMenuData(menus) {
 
 export const getRouterData = app => {
   const routerConfig = {
+    '/rna/rna-realname': {
+      component: dynamicWrapper(app, ['rnarealname'], () => import('../routes/Rna/RnaRealname')),
+    },
+    '/kdi/kdi-entry': {
+      component: dynamicWrapper(app, ['kdientry', 'user', 'kdicompany'], () => import('../routes/Kdi/KdiEntry')),
+    },
     '/kdi/kdi-mng': {
       component: dynamicWrapper(app, ['kdilogistic'], () => import('../routes/Kdi/KdiLogistic')),
+    },
+    '/kdi/kdi-eorder': {
+      component: dynamicWrapper(app, ['kdieorder', 'kdisender', 'user', 'kdireceiver', 'kdicompany'], () =>
+        import('../routes/Kdi/KdiEorder')
+      ),
+    },
+    '/kdi/kdi-cfg/kdi-company-cfg': {
+      component: dynamicWrapper(app, ['kdicompany', 'user'], () => import('../routes/Kdi/KdiCompany')),
+    },
+    '/kdi/kdi-cfg/kdi-sender-cfg': {
+      component: dynamicWrapper(app, ['kdisender'], () => import('../routes/Kdi/KdiSenderCfg')),
     },
     '/pfm/sys-mng': {
       component: dynamicWrapper(app, ['pfmsys'], () => import('../routes/Pfm/SysMng')),
@@ -83,14 +100,32 @@ export const getRouterData = app => {
       ),
     },
     '/pfm/role-mng': {
-      component: dynamicWrapper(app, ['pfmsys', 'pfmrole', 'pfmroleacti', 'pfmfunc'], () =>
+      component: dynamicWrapper(app, ['pfmsys', 'pfmrole', 'pfmroleacti', 'pfmfunc', 'sucuser', 'userrole'], () =>
         import('../routes/Pfm/RoleMng')
       ),
     },
-    '/': {
-      component: dynamicWrapper(app, ['user', 'login'], () => import('../layouts/BasicLayout')),
+    '/suc/user-mng': {
+      component: dynamicWrapper(app, ['sucuser', 'pfmsys', 'userrole', 'sucorg', 'sucuserorg'], () =>
+        import('../routes/Suc/UserMng')
+      ),
     },
-
+    '/suc/org-mng': {
+      component: dynamicWrapper(app, ['sucuser', 'sucorg', 'sucuserorg'], () => import('../routes/Suc/OrgMng')),
+    },
+    '/user': {
+      component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
+    },
+    '/user/login': {
+      component: dynamicWrapper(app, ['user', 'login'], () => import('../routes/User/Login')),
+    },
+    '/': {
+      component: dynamicWrapper(app, ['user'], () => import('../layouts/BasicLayout')),
+    },
+    '/onl/onl-mng': {
+      component: dynamicWrapper(app, ['sucuser', 'pfmsys', 'userrole', 'sucorg', 'sucuserorg'], () =>
+        import('../routes/Onl/OnlineMng')
+      ),
+    },
     '/dashboard/analysis': {
       component: dynamicWrapper(app, ['chart'], () => import('../routes/Dashboard/Analysis')),
     },
@@ -168,12 +203,6 @@ export const getRouterData = app => {
     },
     '/exception/trigger': {
       component: dynamicWrapper(app, ['error'], () => import('../routes/Exception/triggerException')),
-    },
-    '/user': {
-      component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
-    },
-    '/user/login': {
-      component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
     },
     '/user/register': {
       component: dynamicWrapper(app, ['register'], () => import('../routes/User/Register')),

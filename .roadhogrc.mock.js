@@ -7,6 +7,25 @@ import {
   kdilogisticModify,
   kdilogisticDel,
 } from './mock/kdilogistic';
+import { kdicompanyList, kdicompanyGetById, kdicompanyAdd, kdicompanyModify, kdicompanyDel } from './mock/kdicompany';
+import {
+  rnarealnameList,
+  rnarealnameGetById,
+  rnarealnameAdd,
+  rnarealnameModify,
+  rnarealnameDel,
+} from './mock/rnarealname';
+import { kdieorderList, kdieorderGetById, kdieorderAdd, kdieorderModify, kdieorderDel } from './mock/kdieorder';
+import {
+  kdiSenderList,
+  kdisenderGetById,
+  kdisenderAdd,
+  kdisenderModify,
+  kdisenderDel,
+  modifyDefaultSender,
+  addKdiSender,
+  getDefaultSender,
+} from './mock/kdisender';
 import {
   pfmmenuList,
   pfmmenuGetById,
@@ -54,18 +73,58 @@ import { getProfileAdvancedData } from './mock/profile';
 import { getNotices } from './mock/notices';
 import { format, delay } from 'roadhog-api-doc';
 import { S_IRWXG } from 'constants';
+import {
+  sucUserList,
+  sucUserGetById,
+  sucUserAdd,
+  sucUserModify,
+  sucuserEnable,
+  removeLoginPassWord,
+  removePayPassWord,
+  unbindWeChat,
+  unbindQQ,
+} from './mock/sucuser';
+import { sucUserOrgList, sucUserOrgGetById, sucUserOrgAdd, sucUserOrgModify } from './mock/sucuserorg';
 
 // 是否禁用代理
 const noProxy = process.env.NO_PROXY === 'true';
 
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 const proxy = {
+  //kdisender
+  'GET /kdi-svr/kdi/sender': kdiSenderList,
+  'GET /kdi-svr/kdi/sender/alllist': kdiSenderList,
+  'GET /kdi-svr/kdi/sender/default': getDefaultSender,
+  'GET /kdi-svr/kdi/sender/getbyid': kdisenderGetById,
+  'POST /kdi-svr/kdi/sender': kdisenderAdd,
+  'PUT /kdi-svr/kdi/sender': kdisenderModify,
+  'PUT /kdi-svr/kdi/sender/default': modifyDefaultSender,
+  'POST /kdi-svr/kdi/sender/add': addKdiSender,
+  'DELETE /kdi-svr/kdi/sender': kdisenderDel,
   //kdilogitic
   'GET /kdi-svr/kdi/logistic': kdilogisticList,
   'GET /kdi-svr/kdi/logistic/getbyid': kdilogisticGetById,
   'POST /kdi-svr/kdi/logistic': kdilogisticAdd,
   'PUT /kdi-svr/kdi/logistic': kdilogisticModify,
   'DELETE /kdi-svr/kdi/logistic': kdilogisticDel,
+  //kdilogitic
+  'GET /kdi-svr/kdi/company': kdicompanyList,
+  'GET /kdi-svr/kdi/company/getbyid': kdicompanyGetById,
+  'POST /kdi-svr/kdi/company': kdicompanyAdd,
+  'PUT /kdi-svr/kdi/company': kdicompanyModify,
+  'DELETE /kdi-svr/kdi/company': kdicompanyDel,
+  //rnarealname
+  'GET /rna-svr/rna/realname': rnarealnameList,
+  'GET /rna-svr/rna/realname/getbyid': rnarealnameGetById,
+  'POST /rna-svr/rna/realname': rnarealnameAdd,
+  'PUT /rna-svr/rna/realname': rnarealnameModify,
+  'DELETE /rna-svr/rna/realname': rnarealnameDel,
+  //kdieorder
+  'GET /kdi-svr/kdi/eorder': kdieorderList,
+  'GET /kdi-svr/kdi/eorder/getbyid': kdieorderGetById,
+  'POST /kdi-svr/kdi/eorder': kdieorderAdd,
+  'PUT /kdi-svr/kdi/eorder': kdieorderModify,
+  'DELETE /kdi-svr/kdi/eorder': kdieorderDel,
   // pfmsys
   'GET /pfm-svr/pfm/sys': pfmsysList,
   'GET /pfm-svr/pfm/sys/getbyid': pfmsysGetById,
@@ -113,6 +172,21 @@ const proxy = {
   // pfmroleacti
   'GET /pfm-svr/pfm/roleacti': pfmroleactiList,
   'PUT /pfm-svr/pfm/roleacti': pfmroleactiModify,
+  // sucuser
+  'GET /suc-svr/suc/user': sucUserList,
+  'GET /suc-svr/suc/user/getbyid': sucUserGetById,
+  'POST /suc-svr/suc/user': sucUserAdd,
+  'PUT /suc-svr/suc/user': sucUserModify,
+  'PUT /suc-svr/suc/user/enable': sucuserEnable,
+  'PUT /suc-svr/suc/user/del/loginpassword': removeLoginPassWord,
+  'PUT /suc-svr/suc/user/del/paypassword': removePayPassWord,
+  'PUT /suc-svr/suc/user/unbindwechat': unbindWeChat,
+  'PUT /suc-svr/suc/user/unbindqq': unbindQQ,
+  // sucuserorg
+  'GET /suc-svr/suc/org': sucUserOrgList,
+  'GET /suc-svr/suc/org/getbyid': sucUserOrgGetById,
+  'POST /suc-svr/suc/org': sucUserOrgAdd,
+  'PUT /suc-svr/suc/org': sucUserOrgModify,
   // pfmsuc
   'POST /suc-svr/user/login/by/user/name': (req, res) => {
     const { loginPswd, userName, type } = req.body;
@@ -142,6 +216,7 @@ const proxy = {
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
       userid: '00000001',
       notifyCount: 12,
+      orgId: 4513464,
     },
   },
   // GET POST 可省略
@@ -234,10 +309,22 @@ const proxy = {
 // 响应请求不延迟
 export default (noProxy
   ? {
-      'GET /pfm-svr/(.*)': 'http://192.168.1.201/pfm-svr/',
-      'POST /pfm-svr/(.*)': 'http://192.168.1.201/pfm-svr/',
-      'PUT /pfm-svr/(.*)': 'http://192.168.1.201/pfm-svr/',
-      'DELETE /pfm-svr/(.*)': 'http://192.168.1.201/pfm-svr/',
+      'GET /pfm-svr/(.*)': 'http://127.0.0.1:20182/',
+      'POST /pfm-svr/(.*)': 'http://127.0.0.1:20182/',
+      'PUT /pfm-svr/(.*)': 'http://127.0.0.1:20182/',
+      'DELETE /pfm-svr/(.*)': 'http://127.0.0.1:20182/',
+      'GET /rna-svr/(.*)': 'http://127.0.0.1:20088/',
+      'POST /rna-svr/(.*)': 'http://127.0.0.1:20088/',
+      'PUT /rna-svr/(.*)': 'http://127.0.0.1:20088/',
+      'DELETE /rna-svr/(.*)': 'http://127.0.0.1:20088/',
+      'GET /suc-svr/(.*)': 'http://127.0.0.1:9100/',
+      'POST /suc-svr/(.*)': 'http://127.0.0.1:9100/',
+      'PUT /suc-svr/(.*)': 'http://127.0.0.1:9100/',
+      'DELETE /suc-svr/(.*)': 'http://127.0.0.1:9100/',
+      'GET /kdi-svr/(.*)': 'http://127.0.0.1:20080/',
+      'PUT /kdi-svr/(.*)': 'http://127.0.0.1:20080/',
+      'POST /kdi-svr/(.*)': 'http://127.0.0.1:20080/',
+      'DELETE /kdi-svr/(.*)': 'http://127.0.0.1:20080/',
     }
   : delay(proxy));
 //  : delay(proxy, 1000));

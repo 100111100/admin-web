@@ -3,49 +3,71 @@ import { parse } from 'url';
 // mock tableListDataSource
 const tableListDataSource = [
   {
-    id: 154631651464,
-    shipper_id: '482812906476535809',
-    shipper_name: '邮政快递',
-    logistic_code: '1234567891234567891',
-    receive_name: '测试',
-    sender_name: '测试',
-    goods_info: '大台农',
-    order_time: '2018-06-15',
+    id: 1,
+    orderId: '1534231917620',
+    shipperName: '邮政快递',
+    logisticCode: '51115127207238',
+    receiveName: '收件人姓名1',
+    receiverMobile: 18278904219,
+    senderMobile: 18707895796,
+    senderName: '发件人姓名1',
+    orderTitle: '桂圆五斤一件 鲜果优先派送',
+    orderTime: '2018-06-15 14:12:22',
   },
   {
-    id: 15463165235,
-    shipper_id: '482812906476535809',
-    shipper_name: '邮政快递',
-    logistic_code: '1234567891234567891',
-    receive_name: '测试',
-    sender_name: '测试',
-    goods_info: '大台农',
-    order_time: '2018-06-15',
+    id: 2,
+    orderId: '153423191769460',
+    shipperName: '邮政快递',
+    logisticCode: '511151272072454',
+    receiveName: '收件人姓名2',
+    receiverMobile: 18278904219,
+    senderMobile: 18707895796,
+    senderName: '发件人姓名2',
+    orderTitle: '桂圆五斤一件 鲜果优先派送',
+    orderTime: '2000-09-15 14:12:22',
   },
   {
-    id: 154646451464,
-    shipper_id: '482812906476535809',
-    shipper_name: '邮政快递',
-    logistic_code: '1234567891234567891',
-    receive_name: '测试',
-    sender_name: '测试',
-    goods_info: '大台农',
-    order_time: '2018-06-15',
+    id: 3,
+    orderId: '1534231917640',
+    shipperName: '邮政快递',
+    logisticCode: '51115127207212',
+    receiveName: '收件人姓名3',
+    receiverMobile: 18278904219,
+    senderMobile: 18707895796,
+    senderName: '发件人姓名3',
+    orderTitle: '香水柠檬来五斤 鲜果优先派送',
+    orderTime: '2018-01-15 14:12:22',
   },
   {
-    id: 154658751464,
-    shipper_id: '482812906476535809',
-    shipper_name: '邮政快递',
-    logistic_code: '1234567891234567891',
-    receive_name: '测试',
-    sender_name: '测试',
-    goods_info: '大台农',
-    order_time: '2018-06-15',
+    id: 4,
+    orderId: '1534231917696',
+    shipperName: '邮政快递',
+    logisticCode: '51115127207232',
+    receiveName: '收件人姓名4',
+    receiverMobile: 18278904219,
+    senderMobile: 18707895796,
+    senderName: '发件人姓名4',
+    orderTitle: '大台农',
+    orderTime: '2008-06-15 14:12:22',
   },
 ];
 
-export function kdilogisticList(req, res) {
-  res.json(tableListDataSource);
+export function kdilogisticList(req, res, u) {
+  let url = u;
+  if (!url || Object.prototype.toString.call(url) !== '[object String]') {
+    url = req.url; // eslint-disable-line
+  }
+  const params = parse(url, true).query;
+  if (params.receiver_info === undefined || params.receiver_info === '') {
+    return res.json(tableListDataSource);
+  }
+  const result = [];
+  for (let i = 0; i < tableListDataSource.length; i++) {
+    if (tableListDataSource[i].receive_name === params.receiver_info) {
+      result.push(tableListDataSource[i]);
+    }
+  }
+  return res.json(result);
 }
 
 export function kdilogisticGetById(req, res, u) {
