@@ -191,10 +191,7 @@ export default class FilterCardList extends PureComponent {
               >
                 <Card.Meta avatar={<Avatar size="small" src={item.avatar} />} title={item.title} />
                 <div className={styles.cardItemContent}>
-                  <CardInfo
-                    activeUser={formatWan(item.activeUser)}
-                    newUser={numeral(item.newUser).format('0,0')}
-                  />
+                  <CardInfo activeUser={formatWan(item.activeUser)} newUser={numeral(item.newUser).format('0,0')} />
                 </div>
               </Card>
             </List.Item>

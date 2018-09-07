@@ -46,9 +46,7 @@ class TagSelect extends Component {
   getAllTags() {
     let { children } = this.props;
     children = React.Children.toArray(children);
-    const checkedTags = children
-      .filter(child => this.isTagSelectOption(child))
-      .map(child => child.props.value);
+    const checkedTags = children.filter(child => this.isTagSelectOption(child)).map(child => child.props.value);
     return checkedTags || [];
   }
 
@@ -71,11 +69,7 @@ class TagSelect extends Component {
   };
 
   isTagSelectOption = node => {
-    return (
-      node &&
-      node.type &&
-      (node.type.isTagSelectOption || node.type.displayName === 'TagSelectOption')
-    );
+    return node && node.type && (node.type.isTagSelectOption || node.type.displayName === 'TagSelectOption');
   };
 
   render() {

@@ -1,30 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
-import {
-  Row,
-  Col,
-  Icon,
-  Card,
-  Tabs,
-  Table,
-  Radio,
-  DatePicker,
-  Tooltip,
-  Menu,
-  Dropdown,
-} from 'antd';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, DatePicker, Tooltip, Menu, Dropdown } from 'antd';
 import numeral from 'numeral';
-import {
-  ChartCard,
-  yuan,
-  MiniArea,
-  MiniBar,
-  MiniProgress,
-  Field,
-  Bar,
-  Pie,
-  TimelineChart,
-} from 'components/Charts';
+import { ChartCard, yuan, MiniArea, MiniBar, MiniProgress, Field, Bar, Pie, TimelineChart } from 'components/Charts';
 import Trend from 'components/Trend';
 import NumberInfo from 'components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
@@ -108,10 +86,7 @@ export default class Analysis extends Component {
     if (!rangePickerValue[0] || !rangePickerValue[1]) {
       return;
     }
-    if (
-      rangePickerValue[0].isSame(value[0], 'day') &&
-      rangePickerValue[1].isSame(value[1], 'day')
-    ) {
+    if (rangePickerValue[0].isSame(value[0], 'day') && rangePickerValue[1].isSame(value[1], 'day')) {
       return styles.currentDate;
     }
   }
@@ -132,9 +107,7 @@ export default class Analysis extends Component {
     } = chart;
 
     const salesPieData =
-      salesType === 'all'
-        ? salesTypeData
-        : salesType === 'online' ? salesTypeDataOnline : salesTypeDataOffline;
+      salesType === 'all' ? salesTypeData : salesType === 'online' ? salesTypeDataOnline : salesTypeDataOffline;
 
     const menu = (
       <Menu>
@@ -167,11 +140,7 @@ export default class Analysis extends Component {
             全年
           </a>
         </div>
-        <RangePicker
-          value={rangePickerValue}
-          onChange={this.handleRangePickerChange}
-          style={{ width: 256 }}
-        />
+        <RangePicker value={rangePickerValue} onChange={this.handleRangePickerChange} style={{ width: 256 }} />
       </div>
     );
 
@@ -382,13 +351,7 @@ export default class Analysis extends Component {
 
         <Row gutter={24}>
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              loading={loading}
-              bordered={false}
-              title="线上热门搜索"
-              extra={iconGroup}
-              style={{ marginTop: 24 }}
-            >
+            <Card loading={loading} bordered={false} title="线上热门搜索" extra={iconGroup} style={{ marginTop: 24 }}>
               <Row gutter={68}>
                 <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
                   <NumberInfo
@@ -408,13 +371,7 @@ export default class Analysis extends Component {
                   <MiniArea line height={45} data={visitData2} />
                 </Col>
                 <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
-                  <NumberInfo
-                    subTitle="人均搜索次数"
-                    total={2.7}
-                    status="down"
-                    subTotal={26.2}
-                    gap={8}
-                  />
+                  <NumberInfo subTitle="人均搜索次数" total={2.7} status="down" subTotal={26.2} gap={8} />
                   <MiniArea line height={45} data={visitData2} />
                 </Col>
               </Row>
@@ -455,9 +412,7 @@ export default class Analysis extends Component {
               <Pie
                 hasLegend
                 subTitle="销售额"
-                total={
-                  () => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>
-                }
+                total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
                 data={salesPieData}
                 valueFormat={value => <Yuan>{value}</Yuan>}
                 height={248}
@@ -478,11 +433,7 @@ export default class Analysis extends Component {
             {offlineData.map(shop => (
               <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
                 <div style={{ padding: '0 24px' }}>
-                  <TimelineChart
-                    height={400}
-                    data={offlineChartData}
-                    titleMap={{ y1: '客流量', y2: '支付笔数' }}
-                  />
+                  <TimelineChart height={400} data={offlineChartData} titleMap={{ y1: '客流量', y2: '支付笔数' }} />
                 </div>
               </TabPane>
             ))}

@@ -10,7 +10,5 @@ export interface ITagSelectProps {
 
 export default class TagSelect extends React.Component<ITagSelectProps, any> {
   public static Option: typeof TagSelectOption;
-  private children:
-    | React.ReactElement<TagSelectOption>
-    | Array<React.ReactElement<TagSelectOption>>;
+  private children: React.ReactElement<TagSelectOption> | Array<React.ReactElement<TagSelectOption>>;
 }

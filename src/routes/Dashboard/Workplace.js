@@ -134,20 +134,12 @@ export default class Workplace extends PureComponent {
   }
 
   render() {
-    const {
-      project: { notice },
-      projectLoading,
-      activitiesLoading,
-      chart: { radarData },
-    } = this.props;
+    const { project: { notice }, projectLoading, activitiesLoading, chart: { radarData } } = this.props;
 
     const pageHeaderContent = (
       <div className={styles.pageHeaderContent}>
         <div className={styles.avatar}>
-          <Avatar
-            size="large"
-            src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
-          />
+          <Avatar size="large" src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
         </div>
         <div className={styles.content}>
           <div className={styles.contentTitle}>早安，曲丽丽，祝你开心每一天！</div>
@@ -225,20 +217,10 @@ export default class Workplace extends PureComponent {
             </Card>
           </Col>
           <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              style={{ marginBottom: 24 }}
-              title="快速开始 / 便捷导航"
-              bordered={false}
-              bodyStyle={{ padding: 0 }}
-            >
+            <Card style={{ marginBottom: 24 }} title="快速开始 / 便捷导航" bordered={false} bodyStyle={{ padding: 0 }}>
               <EditableLinkGroup onAdd={() => {}} links={links} linkElement={Link} />
             </Card>
-            <Card
-              style={{ marginBottom: 24 }}
-              bordered={false}
-              title="XX 指数"
-              loading={radarData.length === 0}
-            >
+            <Card style={{ marginBottom: 24 }} bordered={false} title="XX 指数" loading={radarData.length === 0}>
               <div className={styles.chart}>
                 <Radar hasLegend height={343} data={radarData} />
               </div>

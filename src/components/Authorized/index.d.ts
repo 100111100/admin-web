@@ -20,11 +20,7 @@ export interface AuthorizedRouteProps extends RouteProps {
 export class AuthorizedRoute extends React.Component<AuthorizedRouteProps, any> {}
 
 interface check {
-  <T extends IReactComponent, S extends IReactComponent>(
-    authority: authority,
-    target: T,
-    Exception: S
-  ): T | S;
+  <T extends IReactComponent, S extends IReactComponent>(authority: authority, target: T, Exception: S): T | S;
 }
 
 interface AuthorizedProps {

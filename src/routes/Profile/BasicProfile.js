@@ -23,11 +23,7 @@ const progressColumns = [
     dataIndex: 'status',
     key: 'status',
     render: text =>
-      text === 'success' ? (
-        <Badge status="success" text="成功" />
-      ) : (
-        <Badge status="processing" text="进行中" />
-      ),
+      text === 'success' ? <Badge status="success" text="成功" /> : <Badge status="processing" text="进行中" />,
   },
   {
     title: '操作员ID',

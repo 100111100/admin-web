@@ -2,21 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Debounce from 'lodash-decorators/debounce';
 import Bind from 'lodash-decorators/bind';
 import { connect } from 'dva';
-import {
-  Button,
-  Menu,
-  Dropdown,
-  Icon,
-  Row,
-  Col,
-  Steps,
-  Card,
-  Popover,
-  Badge,
-  Table,
-  Tooltip,
-  Divider,
-} from 'antd';
+import { Button, Menu, Dropdown, Icon, Row, Col, Steps, Card, Popover, Badge, Table, Tooltip, Divider } from 'antd';
 import classNames from 'classnames';
 import DescriptionList from 'components/DescriptionList';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -161,12 +147,7 @@ const columns = [
     title: '执行结果',
     dataIndex: 'status',
     key: 'status',
-    render: text =>
-      text === 'agree' ? (
-        <Badge status="success" text="成功" />
-      ) : (
-        <Badge status="error" text="驳回" />
-      ),
+    render: text => (text === 'agree' ? <Badge status="success" text="成功" /> : <Badge status="error" text="驳回" />),
   },
   {
     title: '操作时间',
@@ -230,38 +211,15 @@ export default class AdvancedProfile extends Component {
     const { profile, loading } = this.props;
     const { advancedOperation1, advancedOperation2, advancedOperation3 } = profile;
     const contentList = {
-      tab1: (
-        <Table
-          pagination={false}
-          loading={loading}
-          dataSource={advancedOperation1}
-          columns={columns}
-        />
-      ),
-      tab2: (
-        <Table
-          pagination={false}
-          loading={loading}
-          dataSource={advancedOperation2}
-          columns={columns}
-        />
-      ),
-      tab3: (
-        <Table
-          pagination={false}
-          loading={loading}
-          dataSource={advancedOperation3}
-          columns={columns}
-        />
-      ),
+      tab1: <Table pagination={false} loading={loading} dataSource={advancedOperation1} columns={columns} />,
+      tab2: <Table pagination={false} loading={loading} dataSource={advancedOperation2} columns={columns} />,
+      tab3: <Table pagination={false} loading={loading} dataSource={advancedOperation3} columns={columns} />,
     };
 
     return (
       <PageHeaderLayout
         title="单号：234231029431"
-        logo={
-          <img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png" />
-        }
+        logo={<img alt="" src="https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png" />}
         action={action}
         content={description}
         extraContent={extra}
@@ -281,9 +239,7 @@ export default class AdvancedProfile extends Component {
             <Description term="会员卡号">32943898021309809423</Description>
             <Description term="身份证">3321944288191034921</Description>
             <Description term="联系方式">18112345678</Description>
-            <Description term="联系地址">
-              曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口
-            </Description>
+            <Description term="联系地址">曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口</Description>
           </DescriptionList>
           <DescriptionList style={{ marginBottom: 24 }} title="信息组">
             <Description term="某某数据">725</Description>
@@ -294,10 +250,7 @@ export default class AdvancedProfile extends Component {
                 <span>
                   某某数据
                   <Tooltip title="数据说明">
-                    <Icon
-                      style={{ color: 'rgba(0, 0, 0, 0.43)', marginLeft: 4 }}
-                      type="info-circle-o"
-                    />
+                    <Icon style={{ color: 'rgba(0, 0, 0, 0.43)', marginLeft: 4 }} type="info-circle-o" />
                   </Tooltip>
                 </span>
               }
@@ -313,15 +266,12 @@ export default class AdvancedProfile extends Component {
               <Description term="角色码">1234567</Description>
               <Description term="所属部门">XX公司 - YY部</Description>
               <Description term="过期时间">2017-08-08</Description>
-              <Description term="描述">
-                这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...
-              </Description>
+              <Description term="描述">这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...</Description>
             </DescriptionList>
             <Divider style={{ margin: '16px 0' }} />
             <DescriptionList size="small" style={{ marginBottom: 16 }} title="组名称" col="1">
               <Description term="学名">
-                Citrullus lanatus (Thunb.) Matsum. et
-                Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
+                Citrullus lanatus (Thunb.) Matsum. et Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
               </Description>
             </DescriptionList>
             <Divider style={{ margin: '16px 0' }} />

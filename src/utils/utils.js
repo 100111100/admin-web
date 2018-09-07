@@ -74,15 +74,15 @@ function accMul(arg1, arg2) {
   let m = 0;
   const s1 = arg1.toString();
   const s2 = arg2.toString();
-  m += s1.split(".").length > 1 ? s1.split(".")[1].length : 0;
-  m += s2.split(".").length > 1 ? s2.split(".")[1].length : 0;
-  return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / 10 ** m;
+  m += s1.split('.').length > 1 ? s1.split('.')[1].length : 0;
+  m += s2.split('.').length > 1 ? s2.split('.')[1].length : 0;
+  return Number(s1.replace('.', '')) * Number(s2.replace('.', '')) / 10 ** m;
 }
 
 export function digitUppercase(n) {
   const fraction = ['角', '分'];
   const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
-  const unit = [['元', '万', '亿'],['', '拾', '佰', '仟', '万']];
+  const unit = [['元', '万', '亿'], ['', '拾', '佰', '仟', '万']];
   let num = Math.abs(n);
   let s = '';
   fraction.forEach((item, index) => {
@@ -141,9 +141,7 @@ function getRenderArr(routes) {
  * @param {routerData} routerData
  */
 export function getRoutes(path, routerData) {
-  let routes = Object.keys(routerData).filter(
-    routePath => routePath.indexOf(path) === 0 && routePath !== path
-  );
+  let routes = Object.keys(routerData).filter(routePath => routePath.indexOf(path) === 0 && routePath !== path);
   // Replace path to '' eg. path='user' /user/name => name
   routes = routes.map(item => item.replace(path, ''));
   // Get the route to be rendered to remove the deep rendering

@@ -184,9 +184,7 @@ export default class Register extends Component {
                 <div style={{ padding: '4px 0' }}>
                   {passwordStatusMap[this.getPasswordStatus()]}
                   {this.renderPasswordProgress()}
-                  <div style={{ marginTop: 10 }}>
-                    请至少输入 6 个字符。请不要使用容易被猜到的密码。
-                  </div>
+                  <div style={{ marginTop: 10 }}>请至少输入 6 个字符。请不要使用容易被猜到的密码。</div>
                 </div>
               }
               overlayStyle={{ width: 240 }}
@@ -217,12 +215,7 @@ export default class Register extends Component {
           </FormItem>
           <FormItem>
             <InputGroup compact>
-              <Select
-                size="large"
-                value={prefix}
-                onChange={this.changePrefix}
-                style={{ width: '20%' }}
-              >
+              <Select size="large" value={prefix} onChange={this.changePrefix} style={{ width: '20%' }}>
                 <Option value="86">+86</Option>
                 <Option value="87">+87</Option>
               </Select>
@@ -253,25 +246,14 @@ export default class Register extends Component {
                 })(<Input size="large" placeholder="验证码" />)}
               </Col>
               <Col span={8}>
-                <Button
-                  size="large"
-                  disabled={count}
-                  className={styles.getCaptcha}
-                  onClick={this.onGetCaptcha}
-                >
+                <Button size="large" disabled={count} className={styles.getCaptcha} onClick={this.onGetCaptcha}>
                   {count ? `${count} s` : '获取验证码'}
                 </Button>
               </Col>
             </Row>
           </FormItem>
           <FormItem>
-            <Button
-              size="large"
-              loading={submitting}
-              className={styles.submit}
-              type="primary"
-              htmlType="submit"
-            >
+            <Button size="large" loading={submitting} className={styles.submit} type="primary" htmlType="submit">
               注册
             </Button>
             <Link className={styles.login} to="/user/login">

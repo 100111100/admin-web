@@ -1,17 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import {
-  Form,
-  Input,
-  DatePicker,
-  Select,
-  Button,
-  Card,
-  InputNumber,
-  Radio,
-  Icon,
-  Tooltip,
-} from 'antd';
+import { Form, Input, DatePicker, Select, Button, Card, InputNumber, Radio, Icon, Tooltip } from 'antd';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 import styles from './style.less';
 
@@ -60,10 +49,7 @@ export default class BasicForms extends PureComponent {
     };
 
     return (
-      <PageHeaderLayout
-        title="基础表单"
-        content="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。"
-      >
+      <PageHeaderLayout title="基础表单" content="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
         <Card bordered={false}>
           <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8 }}>
             <FormItem {...formItemLayout} label="标题">
@@ -94,13 +80,7 @@ export default class BasicForms extends PureComponent {
                     message: '请输入目标描述',
                   },
                 ],
-              })(
-                <TextArea
-                  style={{ minHeight: 32 }}
-                  placeholder="请输入你的阶段性工作目标"
-                  rows={4}
-                />
-              )}
+              })(<TextArea style={{ minHeight: 32 }} placeholder="请输入你的阶段性工作目标" rows={4} />)}
             </FormItem>
             <FormItem {...formItemLayout} label="衡量标准">
               {getFieldDecorator('standard', {
@@ -126,9 +106,7 @@ export default class BasicForms extends PureComponent {
                 </span>
               }
             >
-              {getFieldDecorator('client')(
-                <Input placeholder="请描述你服务的客户，内部客户直接 @姓名／工号" />
-              )}
+              {getFieldDecorator('client')(<Input placeholder="请描述你服务的客户，内部客户直接 @姓名／工号" />)}
             </FormItem>
             <FormItem
               {...formItemLayout}
@@ -138,9 +116,7 @@ export default class BasicForms extends PureComponent {
                 </span>
               }
             >
-              {getFieldDecorator('invites')(
-                <Input placeholder="请直接 @姓名／工号，最多可邀请 5 人" />
-              )}
+              {getFieldDecorator('invites')(<Input placeholder="请直接 @姓名／工号，最多可邀请 5 人" />)}
             </FormItem>
             <FormItem
               {...formItemLayout}

@@ -62,17 +62,10 @@ function generator({ defaultProps, defaultRules, type }) {
             <FormItem>
               <Row gutter={8}>
                 <Col span={16}>
-                  {getFieldDecorator(name, options)(
-                    <WrappedComponent {...defaultProps} {...inputProps} />
-                  )}
+                  {getFieldDecorator(name, options)(<WrappedComponent {...defaultProps} {...inputProps} />)}
                 </Col>
                 <Col span={8}>
-                  <Button
-                    disabled={count}
-                    className={styles.getCaptcha}
-                    size="large"
-                    onClick={this.onGetCaptcha}
-                  >
+                  <Button disabled={count} className={styles.getCaptcha} size="large" onClick={this.onGetCaptcha}>
                     {count ? `${count} s` : '获取验证码'}
                   </Button>
                 </Col>
@@ -82,9 +75,7 @@ function generator({ defaultProps, defaultRules, type }) {
         }
         return (
           <FormItem>
-            {getFieldDecorator(name, options)(
-              <WrappedComponent {...defaultProps} {...otherProps} />
-            )}
+            {getFieldDecorator(name, options)(<WrappedComponent {...defaultProps} {...otherProps} />)}
           </FormItem>
         );
       }

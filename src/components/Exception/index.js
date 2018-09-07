@@ -10,10 +10,7 @@ const Exception = ({ className, linkElement = 'a', type, title, desc, img, actio
   return (
     <div className={clsString} {...rest}>
       <div className={styles.imgBlock}>
-        <div
-          className={styles.imgEle}
-          style={{ backgroundImage: `url(${img || config[pageType].img})` }}
-        />
+        <div className={styles.imgEle} style={{ backgroundImage: `url(${img || config[pageType].img})` }} />
       </div>
       <div className={styles.content}>
         <h1>{title || config[pageType].title}</h1>

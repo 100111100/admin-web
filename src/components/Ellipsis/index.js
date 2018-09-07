@@ -164,15 +164,7 @@ export default class Ellipsis extends Component {
 
     // length
     if (!lines) {
-      return (
-        <EllipsisText
-          className={cls}
-          length={length}
-          text={children || ''}
-          tooltip={tooltip}
-          {...restProps}
-        />
-      );
+      return <EllipsisText className={cls} length={length} text={children || ''} tooltip={tooltip} {...restProps} />;
     }
 
     const id = `antd-pro-ellipsis-${`${new Date().getTime()}${Math.floor(Math.random() * 100)}`}`;

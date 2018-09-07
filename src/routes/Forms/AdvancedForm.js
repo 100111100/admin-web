@@ -1,17 +1,5 @@
 import React, { PureComponent } from 'react';
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd';
+import { Card, Button, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import { connect } from 'dva';
 import FooterToolbar from 'components/FooterToolbar';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
@@ -147,14 +135,7 @@ class AdvancedForm extends PureComponent {
                 <Form.Item label={fieldLabels.url}>
                   {getFieldDecorator('url', {
                     rules: [{ required: true, message: '请选择' }],
-                  })(
-                    <Input
-                      style={{ width: '100%' }}
-                      addonBefore="http://"
-                      addonAfter=".com"
-                      placeholder="请输入"
-                    />
-                  )}
+                  })(<Input style={{ width: '100%' }} addonBefore="http://" addonAfter=".com" placeholder="请输入" />)}
                 </Form.Item>
               </Col>
               <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
@@ -187,9 +168,7 @@ class AdvancedForm extends PureComponent {
                 <Form.Item label={fieldLabels.dateRange}>
                   {getFieldDecorator('dateRange', {
                     rules: [{ required: true, message: '请选择生效日期' }],
-                  })(
-                    <RangePicker placeholder={['开始日期', '结束日期']} style={{ width: '100%' }} />
-                  )}
+                  })(<RangePicker placeholder={['开始日期', '结束日期']} style={{ width: '100%' }} />)}
                 </Form.Item>
               </Col>
               <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>

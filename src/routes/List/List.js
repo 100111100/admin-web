@@ -64,9 +64,7 @@ export default class SearchList extends Component {
         onTabChange={this.handleTabChange}
       >
         <Switch>
-          {routes.map(item => (
-            <Route key={item.key} path={item.path} component={item.component} exact={item.exact} />
-          ))}
+          {routes.map(item => <Route key={item.key} path={item.path} component={item.component} exact={item.exact} />)}
         </Switch>
       </PageHeaderLayout>
     );

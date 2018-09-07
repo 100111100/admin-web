@@ -137,11 +137,7 @@ export default class SearchList extends Component {
                     {getFieldDecorator('owner', {
                       initialValue: ['wjh', 'zxx'],
                     })(
-                      <Select
-                        mode="multiple"
-                        style={{ maxWidth: 286, width: '100%' }}
-                        placeholder="选择 owner"
-                      >
+                      <Select mode="multiple" style={{ maxWidth: 286, width: '100%' }} placeholder="选择 owner">
                         {owners.map(owner => (
                           <Option key={owner.id} value={owner.id}>
                             {owner.name}
@@ -188,11 +184,7 @@ export default class SearchList extends Component {
             </StandardFormRow>
           </Form>
         </Card>
-        <Card
-          style={{ marginTop: 24 }}
-          bordered={false}
-          bodyStyle={{ padding: '8px 32px 32px 32px' }}
-        >
+        <Card style={{ marginTop: 24 }} bordered={false} bodyStyle={{ padding: '8px 32px 32px 32px' }}>
           <List
             size="large"
             loading={list.length === 0 ? loading : false}
